@@ -1,7 +1,7 @@
 {
-  "name": "react-scroll-up-button",
-  "version": "1.6.4",
-  "main": "dist/react-scroll-up-button.js",
+  "name": "react-scrollup",
+  "version": "1.0.0",
+  "main": "dist/react-scrollup.js",
   "description": "React component Scroll up button, fixed button to scrolll up to desired position",
   "scripts": {
     "compile": "npx babel-cli -d dist/ src/",
@@ -43,10 +43,6 @@
   },
   "author": "Dirtyredz | David McCLain <david.mcclain@dirtyredz.com>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dirtyredz/react-scroll-up-button.git"
-  },
   "keywords": [
     "scroll",
     "scrollUp",
