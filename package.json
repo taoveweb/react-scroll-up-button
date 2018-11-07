@@ -1,5 +1,5 @@
 {
-  "name": "react-scrollup",
+  "name": "matt-react-scrollup",
   "version": "1.0.0",
   "main": "dist/react-scrollup.js",
   "description": "React component Scroll up button, fixed button to scrolll up to desired position",
@@ -41,7 +41,7 @@
       "src/*.{js,jsx}"
     ]
   },
-  "author": "Dirtyredz | David McCLain <david.mcclain@dirtyredz.com>",
+  "author": "taove",
   "license": "MIT",
   "keywords": [
     "scroll",
