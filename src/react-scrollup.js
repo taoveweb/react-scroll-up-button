@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import detectPassiveEvents from 'detect-passive-events';
 
 let wraperObj = window;
-class ScrollUpButton extends React.Component {
+class ScrollUpButton extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { ToggleScrollUp: '' };
@@ -29,12 +29,12 @@ class ScrollUpButton extends React.Component {
       wraperObj.addEventListener(
         'wheel',
         this.StopScrollingFrame,
-        detectPassiveEvents.hasSupport ? { passive: true } : false
+        detectPassiveEvents.hasSupport ? { passive: true } : false,
       ); // Stop animation if user mouse wheels during animation.
       wraperObj.addEventListener(
         'touchstart',
         this.StopScrollingFrame,
-        detectPassiveEvents.hasSupport ? { passive: true } : false
+        detectPassiveEvents.hasSupport ? { passive: true } : false,
       ); // Stop animation if user touches the screen during animation.
     }, 3000);
   }
@@ -48,6 +48,9 @@ class ScrollUpButton extends React.Component {
 
   HandleScroll() {
     const { ShowAtPosition, TransitionClassName } = this.props;
+    console.log('====================================');
+    console.log(this.state.ToggleScrollUp, 'asas');
+    console.log('====================================');
     // wraperObj.pageYOffset = current scroll position
     // ShowAtPosition = position at which we want the button to show.
     if (wraperObj.scrollTop > ShowAtPosition) {
@@ -97,7 +100,7 @@ class ScrollUpButton extends React.Component {
         this.Animation.CurrentAnimationTime,
         this.Animation.StartPosition,
         StopPosition,
-        AnimationDuration
+        AnimationDuration,
       );
       if (YPos <= StopPosition) {
         YPos = StopPosition;
@@ -142,14 +145,14 @@ class ScrollUpButton extends React.Component {
         right: 20,
       },
     };
-    const {
-      children, style, ToggledStyle, ContainerClassName,
-    } = this.props;
+    const { children, style, ToggledStyle, ContainerClassName } = this.props;
     const { ToggleScrollUp } = this.state;
     if (children) {
-      const childrenWithProps = React.Children.map(children, child => React.cloneElement(child, {
-        className: this.className,
-      }));
+      const childrenWithProps = React.Children.map(children, child =>
+        React.cloneElement(child, {
+          className: this.className,
+        }),
+      );
       return (
         <aside
           role="button"
@@ -204,14 +207,13 @@ class ScrollUpButton extends React.Component {
 }
 export default ScrollUpButton;
 
-export const TinyButton = (props) => {
+export const TinyButton = props => {
   const styles = {
     MainStyle: {
-      backgroundColor: 'rgb(87, 86, 86)',
-      height: 30,
+      height: 41,
       position: 'fixed',
       bottom: 20,
-      width: 30,
+      width: 46,
       WebkitTransition: 'all 0.5s ease-in-out',
       transition: 'all 0.5s ease-in-out',
       transitionProperty: 'opacity, right',
@@ -242,16 +244,15 @@ export const TinyButton = (props) => {
         ...ToggledStyle,
       }}
     >
-      <svg viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" xmlSpace="preserve">
-        <path
-          d="M26.297 20.797l-2.594 2.578c-0.391 0.391-1.016 0.391-1.406 0l-8.297-8.297-8.297 8.297c-0.391 0.391-1.016 0.391-1.406 0l-2.594-2.578c-0.391-0.391-0.391-1.031 0-1.422l11.594-11.578c0.391-0.391 1.016-0.391 1.406 0l11.594 11.578c0.391 0.391 0.391 1.031 0 1.422z" // eslint-disable-line
-        />
-      </svg>
+      <img
+        alt=""
+        src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAApCAQAAADgtdMEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfiCwgWFReJ8bXGAAABp0lEQVRIx+3XTUtUURgA4OceZ1LUlKJoUUGfYhQlLYKUFkG0iIyQisJ+Rr+jRasw0GjZvjb9gYggCMNQ6IMYSwmtrjNZhtPmJgkzd+7E3EUw7+7e974P55x7DuecCHuNOqyodbFmziPvIzvcsq2F8J8ou93hjJM50GyxGgzmQsPuoCs3vDtYzw1fD7nRaONtPHsUmvh21ayiQVHr8a8eeo4LRrP2Nysee2AaPPbLWLbWZ8PnTfqw8fTEN9f0NC7L0sFPJv6iqXrqvnIr8AV3fQSRc44nb1+aUmlU2mHE9tQBmUhozrvihHkLYFHJPr0ptUvp+CuTCdXpkosiBUd9UUr41wZs/Td8xpTlhL7ubDJDio5Z8wasmE3hU/AZ96wk3A3Dm4ZywM8Nfs4B/c3hJXeSH1ZwcxMNwRE/vFNFbNqQ7lp4vdkS+w56jDtdIx9cdVknWPa5NlKv5b2qYjuNpxw8Dum3qGjISM0j1VK9FdplzCl9+qTFsIMq9tdLpy3/PRrHrrTk/7tZtPE23gyeHx+CODe8ErzNDS8FL5LdptVR9iyS4z30N8/PZVbqFn/fAAAAAElFTkSuQmCC"
+      />
     </ScrollUpButton>
   );
 };
 
-export const CircleArrow = (props) => {
+export const CircleArrow = props => {
   const styles = {
     MainStyle: {
       backgroundColor: 'rgb(255, 255, 255)',
@@ -261,7 +262,6 @@ export const CircleArrow = (props) => {
       position: 'fixed',
       bottom: 20,
       width: 50,
-      zIndex: 1000,
       WebkitTransition: 'all 0.5s ease-in-out',
       transition: 'all 0.5s ease-in-out',
       transitionProperty: 'opacity, right',
@@ -296,7 +296,7 @@ export const CircleArrow = (props) => {
   );
 };
 
-export const VerticleButton = (props) => {
+export const VerticleButton = props => {
   const styles = {
     MainStyle: {
       backgroundColor: 'rgb(58, 56, 56)',
@@ -355,7 +355,7 @@ function LessThanShowAtPosition(props, propName, componentName) {
       if (value >= ShowAtPosition) {
         // Validate the incoming prop value againt the ShowAtPosition prop
         return new Error(
-          `${propName} (${value}) in ${componentName} must be less then prop: ShowAtPosition (${ShowAtPosition})`
+          `${propName} (${value}) in ${componentName} must be less then prop: ShowAtPosition (${ShowAtPosition})`,
         );
       }
       return null;
