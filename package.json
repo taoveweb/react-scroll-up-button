@@ -1,6 +1,6 @@
 {
   "name": "matt-react-scrollup",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "dist/react-scrollup.js",
   "description": "React component Scroll up button, fixed button to scrolll up to desired position",
   "scripts": {

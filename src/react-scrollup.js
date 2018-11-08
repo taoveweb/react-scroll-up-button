@@ -29,12 +29,12 @@ class ScrollUpButton extends React.PureComponent {
       wraperObj.addEventListener(
         'wheel',
         this.StopScrollingFrame,
-        detectPassiveEvents.hasSupport ? { passive: true } : false,
+        detectPassiveEvents.hasSupport ? { passive: true } : false
       ); // Stop animation if user mouse wheels during animation.
       wraperObj.addEventListener(
         'touchstart',
         this.StopScrollingFrame,
-        detectPassiveEvents.hasSupport ? { passive: true } : false,
+        detectPassiveEvents.hasSupport ? { passive: true } : false
       ); // Stop animation if user touches the screen during animation.
     }, 3000);
   }
@@ -48,9 +48,6 @@ class ScrollUpButton extends React.PureComponent {
 
   HandleScroll() {
     const { ShowAtPosition, TransitionClassName } = this.props;
-    console.log('====================================');
-    console.log(this.state.ToggleScrollUp, 'asas');
-    console.log('====================================');
     // wraperObj.pageYOffset = current scroll position
     // ShowAtPosition = position at which we want the button to show.
     if (wraperObj.scrollTop > ShowAtPosition) {
@@ -100,7 +97,7 @@ class ScrollUpButton extends React.PureComponent {
         this.Animation.CurrentAnimationTime,
         this.Animation.StartPosition,
         StopPosition,
-        AnimationDuration,
+        AnimationDuration
       );
       if (YPos <= StopPosition) {
         YPos = StopPosition;
@@ -145,14 +142,14 @@ class ScrollUpButton extends React.PureComponent {
         right: 20,
       },
     };
-    const { children, style, ToggledStyle, ContainerClassName } = this.props;
+    const {
+      children, style, ToggledStyle, ContainerClassName,
+    } = this.props;
     const { ToggleScrollUp } = this.state;
     if (children) {
-      const childrenWithProps = React.Children.map(children, child =>
-        React.cloneElement(child, {
-          className: this.className,
-        }),
-      );
+      const childrenWithProps = React.Children.map(children, child => React.cloneElement(child, {
+        className: this.className,
+      }));
       return (
         <aside
           role="button"
@@ -207,7 +204,7 @@ class ScrollUpButton extends React.PureComponent {
 }
 export default ScrollUpButton;
 
-export const TinyButton = props => {
+export const TinyButton = (props) => {
   const styles = {
     MainStyle: {
       height: 41,
@@ -252,7 +249,7 @@ export const TinyButton = props => {
   );
 };
 
-export const CircleArrow = props => {
+export const CircleArrow = (props) => {
   const styles = {
     MainStyle: {
       backgroundColor: 'rgb(255, 255, 255)',
@@ -296,7 +293,7 @@ export const CircleArrow = props => {
   );
 };
 
-export const VerticleButton = props => {
+export const VerticleButton = (props) => {
   const styles = {
     MainStyle: {
       backgroundColor: 'rgb(58, 56, 56)',
@@ -355,7 +352,7 @@ function LessThanShowAtPosition(props, propName, componentName) {
       if (value >= ShowAtPosition) {
         // Validate the incoming prop value againt the ShowAtPosition prop
         return new Error(
-          `${propName} (${value}) in ${componentName} must be less then prop: ShowAtPosition (${ShowAtPosition})`,
+          `${propName} (${value}) in ${componentName} must be less then prop: ShowAtPosition (${ShowAtPosition})`
         );
       }
       return null;
